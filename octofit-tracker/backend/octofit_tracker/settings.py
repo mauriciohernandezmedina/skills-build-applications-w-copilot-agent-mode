@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-v&_8$*h*k9pg4q@@_2u!1cg+0jc4$z)a=_gk46f036*928kk#r
 DEBUG = True
 
 
-# Permitir todos los hosts
+# Permitir todos los hosts para pruebas
 ALLOWED_HOSTS = ['*']
 
 

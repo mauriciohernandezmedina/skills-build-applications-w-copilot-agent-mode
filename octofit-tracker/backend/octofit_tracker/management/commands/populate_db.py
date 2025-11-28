@@ -7,14 +7,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         db = connection.cursor().db_conn
-        # Eliminar datos previos
+
+        # Eliminar información previa
         db.users.delete_many({})
         db.teams.delete_many({})
         db.activities.delete_many({})
         db.leaderboard.delete_many({})
         db.workouts.delete_many({})
 
-        # Equipos
+        # otros Equipos
         teams = [
             {"name": "Marvel", "description": "Equipo Marvel"},
             {"name": "DC", "description": "Equipo DC"}
