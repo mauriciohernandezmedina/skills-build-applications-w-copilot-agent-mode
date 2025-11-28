@@ -18,12 +18,57 @@ const Workouts = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Workouts</h2>
-      <ul className="list-group">
-        {data.map((item, idx) => (
-          <li className="list-group-item" key={item.id || idx}>{JSON.stringify(item)}</li>
-        ))}
-      </ul>
+      <div className="page-header">
+        <h1 className="display-4">Workout Suggestions</h1>
+        <p className="lead">Personalized workouts tailored to your fitness goals</p>
+      </div>
+      
+      <div className="row">
+        {data.length > 0 ? (
+          data.map((workout) => (
+            <div className="col-md-6 col-lg-4" key={workout._id}>
+              <div className="card h-100">
+                <div className="card-header bg-primary text-white">
+                  <h5 className="mb-0">{workout.name || 'Workout'}</h5>
+                </div>
+                <div className="card-body">
+                  <p className="card-text">{workout.description || 'No description available'}</p>
+                  <hr />
+                  <div className="mb-2">
+                    <small className="text-muted">Difficulty:</small>
+                    <span className="badge bg-warning text-dark ms-2">
+                      {workout.difficulty || 'Medium'}
+                    </span>
+                  </div>
+                  <div className="mb-2">
+                    <small className="text-muted">Duration:</small>
+                    <strong className="ms-2">{workout.duration || 30} min</strong>
+                  </div>
+                  <div className="mb-2">
+                    <small className="text-muted">Calories:</small>
+                    <strong className="ms-2">{workout.calories || 0} kcal</strong>
+                  </div>
+                  <div className="mb-2">
+                    <small className="text-muted">Category:</small>
+                    <span className="badge bg-info text-dark ms-2">
+                      {workout.category || 'General'}
+                    </span>
+                  </div>
+                </div>
+                <div className="card-footer">
+                  <button className="btn btn-success w-100">Start Workout</button>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="col-12">
+            <div className="alert alert-info text-center">
+              No workout suggestions available. Check back later for personalized recommendations!
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

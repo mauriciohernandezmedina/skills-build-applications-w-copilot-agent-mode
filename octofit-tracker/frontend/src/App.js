@@ -12,7 +12,10 @@ function App() {
     <Router>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">Octofit Tracker</Link>
+          <Link className="navbar-brand" to="/">
+            <img src="/octofitapp-small.png" alt="Octofit Logo" />
+            Octofit Tracker
+          </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -34,7 +37,38 @@ function App() {
           <Route path="/teams" element={<Teams />} />
           <Route path="/users" element={<Users />} />
           <Route path="/workouts" element={<Workouts />} />
-          <Route path="/" element={<h2>Bienvenido a Octofit Tracker</h2>} />
+          <Route path="/" element={
+            <div className="text-center py-5">
+              <h1 className="display-3 mb-4">Welcome to Octofit Tracker 🏋️</h1>
+              <p className="lead mb-4">Your complete fitness tracking and team competition platform</p>
+              <div className="row mt-5">
+                <div className="col-md-3">
+                  <div className="card stats-card">
+                    <h3>👥</h3>
+                    <p>Track Activities</p>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="card stats-card">
+                    <h3>🏆</h3>
+                    <p>Compete</p>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="card stats-card">
+                    <h3>💪</h3>
+                    <p>Get Fit</p>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="card stats-card">
+                    <h3>🎯</h3>
+                    <p>Achieve Goals</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          } />
         </Routes>
       </div>
     </Router>

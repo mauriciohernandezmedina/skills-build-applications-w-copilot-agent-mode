@@ -18,12 +18,62 @@ const Users = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Users</h2>
-      <ul className="list-group">
-        {data.map((item, idx) => (
-          <li className="list-group-item" key={item.id || idx}>{JSON.stringify(item)}</li>
-        ))}
-      </ul>
+      <div className="page-header">
+        <h1 className="display-4">Users</h1>
+        <p className="lead">Manage all registered users in the Octofit Tracker</p>
+      </div>
+      
+      <div className="table-container">
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h5 className="mb-0">User Directory</h5>
+          <button className="btn btn-primary">
+            <i className="bi bi-plus-circle"></i> Add User
+          </button>
+        </div>
+        
+        <div className="table-responsive">
+          <table className="table table-hover table-striped">
+            <thead className="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.length > 0 ? (
+                data.map((user) => (
+                  <tr key={user._id}>
+                    <td>{user._id}</td>
+                    <td><strong>{user.name}</strong></td>
+                    <td>{user.email || 'N/A'}</td>
+                    <td>{user.first_name || 'N/A'}</td>
+                    <td>{user.last_name || 'N/A'}</td>
+                    <td>
+                      <span className="badge bg-success">Active</span>
+                    </td>
+                    <td>
+                      <button className="btn btn-sm btn-info btn-action">View</button>
+                      <button className="btn btn-sm btn-warning btn-action">Edit</button>
+                      <button className="btn btn-sm btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="text-center text-muted">
+                    No users found
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
