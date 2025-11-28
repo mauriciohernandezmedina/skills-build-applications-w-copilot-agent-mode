@@ -14,13 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+import os
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 
 from . import views
-
 
 router = DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -29,8 +29,15 @@ router.register(r'activities', views.ActivityViewSet)
 router.register(r'leaderboard', views.LeaderboardViewSet)
 router.register(r'workouts', views.WorkoutViewSet)
 
+# Redirección dinámica para la raíz según $CODESPACE_NAME
+def dynamic_api_redirect(request):
+    codespace_name = os.environ.get('CODESPACE_NAME')
+    if codespace_name:
+        return RedirectView.as_view(url=f'https://{codespace_name}-8000.app.github.dev/api/', permanent=False)(request)
+    return RedirectView.as_view(url='/api/', permanent=False)(request)
+
 urlpatterns = [
-    path('', RedirectView.as_view(url='/api/', permanent=False)),
+    path('', dynamic_api_redirect, name='dynamic-api-redirect'),
     path('api/', views.api_root, name='api-root'),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
